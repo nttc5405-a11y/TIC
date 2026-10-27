@@ -22,4 +22,23 @@ main{padding-top:16px}.major{padding:30px 0}.major>h2{margin-bottom:20px}
 @media(max-width:700px){header{padding:24px 20px}main{padding:10px 18px 45px}.topic>summary{padding-top:20px;padding-bottom:20px}.topic>summary:after{top:30px}.resource-controls input{width:100%}nav .navinner{padding:10px 16px;gap:18px}.actions{gap:8px}}
 @media print{.quick-tools,.embed-note,.full-page-link{display:none}.topic>summary:after{display:none}.topic{border-bottom:1px solid #aaa}.topic-content{padding-bottom:10px}header{padding:12px}h1{font-size:26pt}.topic>summary h2{font-size:22pt}}
 
-.topic table td:first-child a{white-space:nowrap}
+/* Reading position stays inside the sticky navigation, including in an embed. */
+html{scroll-padding-top:calc(var(--reading-nav-height,100px) + 18px)}
+nav{overflow:visible;white-space:normal}
+nav .navinner{overflow-x:auto;white-space:nowrap;scrollbar-width:thin;padding-top:10px;padding-bottom:10px}
+nav .navinner a{flex:none;border-bottom:2px solid transparent;padding:2px 0}
+nav .navinner a[aria-current="location"]{color:#9e3c15;border-bottom-color:#b85f2d;font-weight:750}
+.reading-position{display:flex;align-items:center;gap:10px;max-width:1120px;margin:0 auto;padding:8px 22px 10px;border-top:1px solid #e0e4da;font-size:14px;line-height:1.5;min-height:40px}
+.reading-label{color:#687b6b;flex:none;font-size:12px}
+.reading-chapter{color:#1e4939;font-weight:750;flex:none}
+.reading-subheading{color:#5d6e5e;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.reading-subheading:not(:empty):before{content:'›';padding-right:10px;color:#a45c33}
+.reading-count{font-size:12px;letter-spacing:1px;color:#5b705e;margin-left:auto;flex:none;font-variant-numeric:tabular-nums}
+@media(max-width:700px){
+ .reading-position{padding:7px 16px 9px;gap:6px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;min-height:54px}
+ .reading-chapter{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .reading-subheading{grid-row:2;grid-column:2/4;font-size:12px}
+ .reading-subheading:empty{display:none}.reading-subheading:not(:empty):before{padding-right:6px}
+ .reading-count{grid-column:3;grid-row:1}.reading-label{font-size:11px}
+}
+@media print{.reading-position{display:none}}
